@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const http = require('http'); //1
 
-const { connectToMondoDB } = require('./config/db');
+const { connectToMongoDB } = require('./config/db');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var osRouter = require('./routes/os.routes');
@@ -43,6 +43,6 @@ app.use(function(err, req, res, next) {
 //2
 const server = http.createServer(app);
 server.listen(process.env.PORT, () => {
-  connectToMondoDB();
+  connectToMongoDB();
   console.log(`Server is running on http://localhost:${process.env.PORT}`);
 });
