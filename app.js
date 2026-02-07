@@ -7,8 +7,9 @@ const http = require('http'); //1
 
 const { connectToMongoDB } = require('./config/db');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/users.routes');
 var osRouter = require('./routes/os.routes');
+var factureRouter = require('./routes/facture.routres');
 
 require('dotenv').config(); // Load environment variables
 
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/index', indexRouter);
 app.use('/users', usersRouter);
 app.use('/os', osRouter);
+app.use('/facture', factureRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
