@@ -23,22 +23,25 @@ const userSchema = new mongoose.Schema(
       ],
     },
     age: { type: Number, min: 20, max: 80 },
-    role: { type: String, enum: ["admin", "user"], default: "user" },
+    role: { type: String, enum: ["admin", "user", "moderateur"], default: "user" },
     location: String,
+
+    //champs role admin
+    tel:Number
+
+    //champs roley
   },
   { timestamps: true },
 );
 
-// userSchema.pre("save", async function (next) {
-//   try {
-//     const salt = await bcrypt.genSalt();
-//     const User = this;
-//     User.password = await bcrypt.hash(User.password, salt);
-//     next();
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+userSchema.pre("save", async function () {
+  try {
+    const salt = await bcrypt.genSalt();
+    this.password = await bcrypt.hash(this.password, salt);
+  } catch (err) {
+    throw err;
+  }
+});
 
 
 module.exports = mongoose.model("User", userSchema);
