@@ -25,11 +25,13 @@ const userSchema = new mongoose.Schema(
     age: { type: Number, min: 20, max: 80 },
     role: { type: String, enum: ["admin", "user", "moderateur"], default: "user" },
     location: String,
+    user_image: String, //champs image
 
     //champs role admin
-    tel:Number
+    tel:Number,
 
-    //champs roley
+    //champs role moderateur
+    codeModerateur:String
   },
   { timestamps: true },
 );

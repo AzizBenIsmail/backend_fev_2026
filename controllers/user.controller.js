@@ -55,8 +55,8 @@ module.exports.createUser = async (req, res) => {
 
 module.exports.createUserAdmin = async (req, res) => {
   try {
-    const { name, email, password ,tel} = req.body;
-    const newUser = new userModel({ name, email, password, tel ,role:"admin"});
+    const { email, password ,tel} = req.body;
+    const newUser = new userModel({ email, password, tel ,role:"admin"});
     await newUser.save();
     res
       .status(201)
@@ -68,8 +68,8 @@ module.exports.createUserAdmin = async (req, res) => {
 
 module.exports.createUserModerateur = async (req, res) => {
   try {
-    const { name, email, password ,tel} = req.body;
-    const newUser = new userModel({ name, email, password, tel ,role:"moderateur"});
+    const { name, email, password ,codeModerateur} = req.body;
+    const newUser = new userModel({ name, email, password, codeModerateur, role:"moderateur"});
     await newUser.save();
     res
       .status(201)
@@ -112,3 +112,16 @@ module.exports.deleteUser = async (req, res) => {
   }
 };
 
+module.exports.createUserWithImage = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user_image = req.file.filename;
+    const newUser = new userModel({ email, password, user_image});
+    await newUser.save();
+    res
+      .status(201)
+      .json({ message: "User created successfully", data: newUser });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
