@@ -10,8 +10,6 @@ router.get('/GetUserById/:id', userController.getUserById);
 
 router.post('/CreateUser', userController.createUser);
 
-router.post('/CreateUser', userController.createUser);
-
 router.post('/CreateUserWithImage', upload.single('user_image'), logMiddleware, userController.createUserWithImage);
 
 router.post('/CreateUserAdmin', userController.createUserAdmin);

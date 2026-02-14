@@ -31,7 +31,18 @@ const userSchema = new mongoose.Schema(
     tel:Number,
 
     //champs role moderateur
-    codeModerateur:String
+    codeModerateur:String,
+    mycar: { type: mongoose.Schema.Types.ObjectId, ref: 'Car' }, // Référence
+    //  à plusieurs voitures pour les modérateurs
+    listOfCars: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Car' }], // Référence à plusieurs voitures pour les modérateurs
+    //champs prof
+    specialite: String,
+    diplome: String,
+    listdesEtudiants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Référence à plusieurs utilisateurs étudiants
+    
+
+    //champs etudiant
+    listdesprof: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Référence à plusieurs utilisateurs professeurs
   },
   { timestamps: true },
 );
