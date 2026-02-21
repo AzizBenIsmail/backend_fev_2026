@@ -3,10 +3,11 @@ var router = express.Router();
 const userController = require('../controllers/user.controller');
 const upload = require('../middlewares/uploadfile');
 const logMiddleware = require('../middlewares/LogMiddleware');
+const { rquireAuth } = require('../middlewares/authMiddleware');
 /* GET users listing. */
-router.get('/GetAllUsers', logMiddleware, userController.getAllUsers);
+router.get('/GetAllUsers', rquireAuth, logMiddleware, userController.getAllUsers);
 
-router.get('/GetUserById/:id', userController.getUserById);
+router.get('/getMyProfile', rquireAuth, userController.getMyProfile);
 
 router.post('/CreateUser', userController.createUser);
 
@@ -20,5 +21,8 @@ router.delete('/deleteUser/:id', userController.deleteUser);
 
 router.put('/updateUser/:id', userController.updateUser);
 
+router.post('/login', userController.login);
+
+router.post('/logout',rquireAuth, userController.logout);
 
 module.exports = router;

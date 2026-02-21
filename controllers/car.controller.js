@@ -78,9 +78,9 @@ module.exports.deleteCar = async (req, res) => {
 
 module.exports.createCarWithImage = async (req, res) => {
   try {
-    const { marque, modele, annee, prix } = req.body;
+    const { marque, modele, annee, prix ,IDOwner } = req.body;
     const imagePath = req.file ? req.file.path : null;
-    const newCar = new car({ marque, modele, annee, prix, image: imagePath });
+    const newCar = new car({ marque, modele, annee, prix, image: imagePath, owner: IDOwner });
     await newCar.save();
     res.status(201).json({ message: "Car created successfully", data: newCar });
   } catch (error) {
