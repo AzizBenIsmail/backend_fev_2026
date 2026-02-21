@@ -168,3 +168,16 @@ module.exports.logout = async (req, res) => {
   }
 };
   
+
+module.exports.forgotPassword = async (req, res) => {
+  try {
+    
+    // Logic for handling forgot password
+    const { email } = req.body;
+    // You would typically generate a reset token, save it to the database, and send an email to the user with instructions to reset their password.
+    
+    res.status(200).json({ message: "Forgot password endpoint" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

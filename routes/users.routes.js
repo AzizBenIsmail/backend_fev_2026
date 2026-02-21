@@ -5,7 +5,7 @@ const upload = require('../middlewares/uploadfile');
 const logMiddleware = require('../middlewares/LogMiddleware');
 const { rquireAuth } = require('../middlewares/authMiddleware');
 /* GET users listing. */
-router.get('/GetAllUsers', logMiddleware, userController.getAllUsers);
+router.get('/GetAllUsers', rquireAuth,logMiddleware, userController.getAllUsers);
 
 router.get('/getMyProfile', rquireAuth, userController.getMyProfile);
 
