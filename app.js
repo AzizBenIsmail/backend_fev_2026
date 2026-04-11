@@ -11,6 +11,8 @@ var usersRouter = require('./routes/users.routes');
 var osRouter = require('./routes/os.routes');
 var factureRouter = require('./routes/facture.routres');
 
+const cors = require('cors'); // Import CORS middleware => npm i cors
+
 require('dotenv').config(); // Load environment variables
 
 var app = express();
@@ -18,6 +20,7 @@ var app = express();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors({ origin: 'http://localhost:3000' })); // Enable CORS for requests from http://localhost:3000
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

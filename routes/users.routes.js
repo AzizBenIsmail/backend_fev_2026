@@ -5,11 +5,11 @@ const upload = require('../middlewares/uploadfile');
 const logMiddleware = require('../middlewares/LogMiddleware');
 const { rquireAuth } = require('../middlewares/authMiddleware');
 /* GET users listing. */
-router.get('/GetAllUsers', rquireAuth,logMiddleware, userController.getAllUsers);
+router.get('/GetAllUsers',logMiddleware, userController.getAllUsers);
 
 router.get('/getMyProfile', rquireAuth, userController.getMyProfile);
 
-router.post('/CreateUser', userController.createUser);
+router.post('/addUser', userController.createUser);
 
 router.post('/CreateUserWithImage', upload.single('user_image'), logMiddleware, userController.createUserWithImage);
 

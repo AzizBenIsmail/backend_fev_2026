@@ -18,7 +18,7 @@ module.exports.getAllUsers = async (req, res) => {
     }
     res
       .status(200)
-      .json({ message: "Users retrieved successfully", data: users });
+      .json({ users });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -42,8 +42,8 @@ module.exports.getMyProfile = async (req, res) => {
 
 module.exports.createUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
-    const newUser = new userModel({ name, email, password });
+    const { name, email, password , age ,location} = req.body;
+    const newUser = new userModel({ name, email, password , age ,location});
     await newUser.save();
     res
       .status(201)
